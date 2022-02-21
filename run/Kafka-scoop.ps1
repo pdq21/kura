@@ -1,27 +1,27 @@
-
 <#
-Nov. 2020
+    Nov. 2020
 
-record, topic, partition, offset, producer/consumer,  
+    record, topic, partition, offset, producer/consumer,  
 
-zk
-listener: 2181 (clientPort), data: /tmp/data (dataDir)
-kafka 
-listener: 9092 (listeners=PLAINTEXT://:9092)
-zookeeper.connect, zookeeper.connection.timeout.ms
-socket.send.buffer.bytes, socket.receive.buffer.bytes, socket.request.max.bytes
-flush buffered segment file to disk: log.flush.interval.messages, log.flush.interval.ms
-segment file: log.retention.hours, log.retention.bytes, log.segment.bytes, log.retention.check.interval.ms
+    zk
+    listener: 2181 (clientPort), data: /tmp/data (dataDir)
+    kafka
+    listener: 9092 (listeners=PLAINTEXT://:9092)
+    zookeeper.connect, zookeeper.connection.timeout.ms
+    socket.send.buffer.bytes, socket.receive.buffer.bytes, socket.request.max.bytes
+    flush buffered segment file to disk: log.flush.interval.messages, log.flush.interval.ms
+    segment file
+    log.retention.hours, log.retention.bytes, log.segment.bytes, log.retention.check.interval.ms
 
-Src
-https://www.apache.org/dyn/closer.cgi/zookeeper/
-https://kafka.apache.org/downloads
+    Src
+    https://www.apache.org/dyn/closer.cgi/zookeeper/
+    https://kafka.apache.org/downloads
 
-Linux
-./bin/zkServer.sh start
-./bin/kafka-server-start.sh
-./bin/kafka-server-stop.sh
-./bin/zkServer.sh stop
+    Linux
+    ./bin/zkServer.sh start
+    ./bin/kafka-server-start.sh
+    ./bin/kafka-server-stop.sh
+    ./bin/zkServer.sh stop
 #>
 function Start-Setup {
     ${global:cfg} = "${PWD}\..\conf\kafka"

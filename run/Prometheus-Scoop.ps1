@@ -1,8 +1,8 @@
 <#
-Nov. 2020
-prevent "Error parsing commandline arguments: flag 'config.file' cannot be repeated"
-localhost:9090/metrics
-localhost:9090/graph
+    Nov. 2020
+    prevent "Error parsing commandline arguments: flag 'config.file' cannot be repeated"
+    localhost:9090/metrics
+    localhost:9090/graph
 #>
 $git_root=".\.."
 $prom_cfg = "prometheus.yml"

@@ -1,6 +1,6 @@
 @echo off
 setlocal
-rem 11.2020
+rem Nov. 2020
 rem start influxdb, grafana, influx & eclipse with kura
 rem assumes scoop in path env
 
@@ -27,7 +27,7 @@ set influx_cfg=%conf%\influxdb\influxdb.conf
 set influx_err===^> error while contacting influxd.
 set grafana_cfg=%conf%\grafana\custom.ini
 set grafana_home=%scoop%\grafana\current
-set eclipse=C:\TMP\eclipse-jee-2020-03-R-incubation-win32-x86_64\eclipse\eclipse.exe
+set eclipse=%TEMP%\eclipse-jee-2020-03-R-incubation-win32-x86_64\eclipse\eclipse.exe
 set mqtt=%LocalAppData%\Programs\MQTT-Explorer\MQTT Explorer.exe
 set sm=start /min
 set webkura=http://localhost:8080/kura
@@ -47,6 +47,7 @@ set gf=cmd /k "grafana-server -config "%grafana_cfg%" -homepath "%grafana_home%"
         )
     )
 ) >nul
+
 rem sp %mq%;
 set wtargs=-M nt %mw%; sp %if%; sp %ifd%; sp %gf%; ft
 

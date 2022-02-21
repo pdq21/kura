@@ -29,22 +29,20 @@
 
     Cascadia Code 2009.22
     https://github.com/microsoft/cascadia-code
-
 .Notes
     as-is Nov. 2020
-    License: MIT
     
-	TODO nuget/msstore [y] -force
+    TODO nuget/msstore [y] -force
 #>
 $scoop = @{
     #append / to signalize a bucket needs to be installed, e.g. nerd-fonts/
     Apps = @(
         "git"
-	    "python" #or "winpython"
+	"python" #or "winpython"
         "windows-terminal"
         "wsl-terminal"
         "extras/windows-terminal"
-	    "extras/vscode"
+	"extras/vscode"
         "extras/powertoys"
         "nerd-fonts/"
         #kura project
@@ -54,8 +52,8 @@ $scoop = @{
         #"extras/grafana"
         #"prometheus"
         #win installer
-	    #"wixtoolset" #WiX/dark installer toolset
-	    #"innounp" #Inno Setup Unpacker
+	#"wixtoolset" #WiX/dark installer toolset
+	#"innounp" #Inno Setup Unpacker
     )
     Uri = [uri]"https://get.scoop.sh"
 }
@@ -66,6 +64,7 @@ $winget = @{
         #"AdoptOpenJDK.OpenJDK" #AdoptOpenJDK 15.0.1+9 (x64)
         #"thomasnordquist.MQTT-Explorer"
     )
+    #TODO resolve to latest
     Uri = [uri]"https://github.com/microsoft/winget-cli/releases/download/v0.2.2941-preview/Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.appxbundle"
 }
 $posh = @{
@@ -94,11 +93,11 @@ function scoopFun {
                 scoop bucket add $(($_ -split "/")[0])
             }
             if ($_ -match "nerd-fonts") {
-#                Invoke-Expression "${scoopPath}\buckets\nerd-fonts\bin\generate-manifests.ps1"
+                Invoke-Expression "${scoopPath}\buckets\nerd-fonts\bin\generate-manifests.ps1"
             }
             scoop install $_
 <#
-    	#sTODO
+    	#TODO
 	if($isAdmin)
 	#'scoop checkup' recommendation, exclude from Windows Defender MpEngine
 	@('${env:UserProfile}\scoop', '${env:ProgramData}\scoop') | % { Add-MpPreference -ExclusionPath ${_} }
@@ -129,7 +128,6 @@ function wingetFun {
             }
             Write-Host "Enabling Developer Mode..."
             New-ItemProperty @devMode | Out-Null
-
             $wingetIwr = @{
                 Uri = $winget.Uri
                 UseBasicParsing = $true
@@ -137,10 +135,8 @@ function wingetFun {
                 OutFile = "${env:TEMP}\$($winget.Uri.Segments[-1])"
             }
             Invoke-WebRequest @wingetIwr
-
             Add-AppxPackage $wingetIwr.OutFile
-        }
-        
+        }        
         $winget.Apps | ForEach-Object {
             winget install $_
         }
@@ -258,6 +254,7 @@ if ($isadmin) {
 } else {
     Write-Host "User Mode" -f Yellow
 }
+
 scoopFun
 wingetFun
 poshFun
