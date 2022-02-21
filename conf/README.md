@@ -1,6 +1,6 @@
 # Configuration for components used
 
-Some components were changed side by side to explore their behavior.
+Some components were used side by side to explore their behavior and usability.
 
 * Eclipse
 * InfluxDB

@@ -12,7 +12,7 @@ $prom_args = "--config.file=`"${git_root}\config\${prom_cfg}`""
 
 if (Test-Path $scoop_mf) {
     $cfg = Get-Content $scoop_mf
-#    Rename-Item $prom_mf_dir -NewName "${$prom_cfg}.bak" -Force
+#    Rename-Item $prom_mf_dir -NewName "${prom_cfg}.bak" -Force
     $cfg -match $prom_cfg | ForEach-Object { $cfg -replace "${_}", "`"`"" }
 
     $cfg -match $prom_cfg | ForEach-Object { $cfg -replace [regex]::escape($_),"---" }
